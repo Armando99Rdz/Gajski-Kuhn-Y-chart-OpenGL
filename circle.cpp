@@ -1,14 +1,6 @@
 /////////////////////////////////////////////////////////////////////         
-// circle.cpp
-//
-// This program draws a line loop with vertices equally apart on 
-// a fixed circle. The larger the number of vertices the better
-// the loop approximates the circle.
-//
-// Interaction:
-// Press +/- to increase/decrease the number of vertices of the loop. 
-//
-// Sumanta Guha.
+// Title: Gajski-Kuhn Y-chart
+// @author: Armando Rodríguez.
 ///////////////////////////////////////////////////////////////////// 
 
 #include <cstdlib>
@@ -95,6 +87,9 @@ void drawPoints(){
       //
       glVertex3f(positionsLines[2][2], positionsLines[2][3], 0.0);
       glVertex3f(positionsLines[2][2], positionsLines[2][3]+8, 0.0);
+      glVertex3f(positionsLines[2][2], positionsLines[2][3]+16, 0.0);
+      glVertex3f(positionsLines[2][2], positionsLines[2][3]+24, 0.0);
+      glVertex3f(positionsLines[2][2], positionsLines[2][3]+32, 0.0);
       
    glEnd();   
 }
@@ -140,8 +135,25 @@ void displayMe(void){
    writeBitmapString((void*)font, "Physical partitions");
    glRasterPos3f(positionsLines[2][2]+2, positionsLines[2][3]+8, 0.0);
    writeBitmapString((void*)font, "Floor plans");
-   
+   glRasterPos3f(positionsLines[2][2]+2, positionsLines[2][3]+16, 0.0);
+   writeBitmapString((void*)font, "Module layout");
+   glRasterPos3f(positionsLines[2][2]+2, positionsLines[2][3]+24, 0.0);
+   writeBitmapString((void*)font, "Cell layout");
+   glRasterPos3f(positionsLines[2][2]+2, positionsLines[2][3]+32, 0.0);
+   writeBitmapString((void*)font, "Transistor layout");
 
+   // lines titles
+   glRasterPos3f(positionsLines[0][2]-15, positionsLines[0][3]+5, 0.0);
+   writeBitmapString(GLUT_BITMAP_HELVETICA_18, "Behavioural domain");
+   glRasterPos3f(positionsLines[1][2]-3, positionsLines[1][3]+5, 0.0);
+   writeBitmapString(GLUT_BITMAP_HELVETICA_18, "Structural Domain");
+   glRasterPos3f(positionsLines[2][2]-6, positionsLines[2][3]-5, 0.0);
+   writeBitmapString(GLUT_BITMAP_HELVETICA_18, "Physical Domain");
+
+
+   //title
+   glRasterPos3f(positionsLines[2][2]-13, positionsLines[2][3]+85, 0.0);
+   writeBitmapString(GLUT_BITMAP_HELVETICA_18, "Gajski-Kuhn Y-chart");
 
    glFlush();
 }
@@ -191,7 +203,7 @@ int main(int argc, char **argv)
    	glutInit(&argc, argv);
    	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB); 
    	glutInitWindowSize(AnchuraVentana, AlturaVentana);   
-   	glutCreateWindow("circle.cpp");
+   	glutCreateWindow("Gajski-Kuhn Y-chart");
    	init(); 
    	glutDisplayFunc(displayMe); 
    	glutReshapeFunc(resize);  
